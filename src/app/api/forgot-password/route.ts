@@ -2,7 +2,6 @@ import { prisma } from "@/lib/db";
 import { generateToken } from "@/lib/generateToken";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import ForgotPasswordEmail from "../../../../react-email-starter/emails/forgot-password-link";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -54,27 +53,27 @@ export async function POST(req: Request) {
       },
     });
 
-    const { data, error } = await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
-      to: email,
-      subject: "Changement du mot de passe",
-      react: ForgotPasswordEmail({
-        firstName: user.firstname,
-        link: `http://localhost:3000/reset-password/${encodeURIComponent(
-          token
-        )}`,
-      }) as React.ReactElement,
-    });
+    // const { data, error } = await resend.emails.send({
+    //   from: "Acme <onboarding@resend.dev>",
+    //   to: email,
+    //   subject: "Changement du mot de passe",
+    //   react: ForgotPasswordEmail({
+    //     firstName: user.firstname,
+    //     link: `http://localhost:3000/reset-password/${encodeURIComponent(
+    //       token
+    //     )}`,
+    //   }) as React.ReactElement,
+    // });
 
-    if (error) {
-      return NextResponse.json({ error });
-    }
+    // if (error) {
+    //   return NextResponse.json({ error });
+    // }
 
     return NextResponse.json(
       {
         message:
           "Un e-mail contenant un lien de réinitialisation de mot de passe a été envoyé à votre adresse e-mail.",
-        data,
+        // data,
       },
       { status: 201 }
     );
