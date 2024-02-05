@@ -9,7 +9,7 @@
     "email": "email dev",
     "prisma:seed": "prisma db seed",
     "postinstall": "prisma generate",
-    "vercel-build": "prisma generate && prisma migrate deploy && prisma migrate resolve --applied `20231207095715_update_is_published` && next build"
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.0",
